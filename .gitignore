@@ -1,0 +1,15 @@
+# Dependencias y archivos locales
+app/node_modules/
+env
+.env
+.env.*
+!env.example
+
+# Datos generados al probar localmente
+app/storage/*.json
+
+# Archivos temporales de Word y del sistema
+~$*
+*.tmp
+.DS_Store
+Thumbs.db
