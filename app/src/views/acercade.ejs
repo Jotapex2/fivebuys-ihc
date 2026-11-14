@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><%- include('partials/head', { title }) %></head>
+<body>
+  <%- include('partials/navbar', { catalogPage: false }) %>
+  <main id="contenido-principal" tabindex="-1" class="page-main container narrow about-page">
+    <p class="eyebrow">Nosotros</p>
+    <h1>Te acompañamos a elegir</h1>
+    <p class="lead">Elegir un computador puede ser difícil cuando hay demasiados términos, pasos o dudas. En FiveBuys queremos ayudarte a comparar, revisar tu carrito y avanzar con claridad, a tu ritmo.</p>
+    <p>Somos un proyecto educativo de Interacción Humano-Computador. Mejoramos la experiencia con una pregunta: ¿qué necesitas para comprar con menos esfuerzo y más confianza?</p>
+    <div class="about-details">
+      <details>
+        <summary>Elige con información clara</summary>
+        <div class="about-detail-content"><p>Busca un equipo para jugar, estudiar o trabajar. Revisa sus componentes y su precio en pesos chilenos. Agrega o quita unidades y comprueba el total antes de continuar.</p><p>Si algo no está claro, cuéntanos tu duda en Contacto. Queremos que puedas decidir sin tener que adivinar qué hacer.</p></div>
+      </details>
+      <details>
+        <summary>Avanza a tu ritmo</summary>
+        <div class="about-detail-content"><p>Puedes volver al carrito y revisar tu elección. La encuesta es voluntaria: cualquier valoración obtiene el mismo 5 % de descuento. También puedes continuar sin responder.</p><p>Trabajamos para que las instrucciones, el teclado, el contraste y los mensajes te ayuden en cada paso. Si encuentras una barrera, avísanos: tu experiencia nos ayuda a mejorar.</p></div>
+      </details>
+      <details>
+        <summary>Tu experiencia guía las mejoras</summary>
+        <div class="about-detail-content"><p>Observamos si logras elegir y completar la compra, cuánto esfuerzo necesitas, si entiendes el siguiente paso y cómo te sientes al avanzar. También revisamos las barreras de acceso y si los mensajes te permiten reconocer lo que ocurrió.</p><p>Probamos, escuchamos y ajustamos. Una apariencia agradable debe ir acompañada de instrucciones útiles y respuestas claras. Las pruebas con personas y lectores de pantalla forman parte de la evaluación pendiente; no afirmamos que todas las barreras estén resueltas.</p></div>
+      </details>
+    </div>
+    <aside class="about-test-note" aria-label="Proyecto educativo"><strong>Prueba con tranquilidad</strong><p>Esta tienda es una demostración educativa. Los pagos se realizan solo en Stripe de pruebas: usa una tarjeta de prueba, nunca tu tarjeta personal.</p></aside>
+    <div class="about-actions"><a href="/#catalogo" class="hero-btn">Explorar computadores</a><a href="/contacto">Cuéntanos qué necesitas</a></div>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/scripts/navigation.js"></script>
+</body>
+</html>

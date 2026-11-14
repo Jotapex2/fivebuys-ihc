@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><%- include('partials/head', { title }) %></head>
+<body>
+  <%- include('partials/navbar', { catalogPage: false }) %>
+  <main id="contenido-principal" tabindex="-1" class="page-main container contact-layout">
+    <%- include('partials/contact-content', { headingLevel: 1 }) %>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/scripts/navigation.js"></script>
+  <script src="/scripts/contact.js"></script>
+</body>
+</html>

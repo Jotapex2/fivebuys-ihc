@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><%- include('partials/head', { title }) %></head>
+<body>
+  <%- include('partials/navbar', { catalogPage: true }) %>
+
+  <main id="contenido-principal" tabindex="-1" aria-label="Tienda">
+    <div data-catalog-view>
+      <section class="hero" aria-labelledby="inicio-title">
+        <h1 id="inicio-title">Encuentra tu computador ideal</h1>
+        <p>Descubre nuestra oferta de PCs de alta calidad.</p>
+        <a class="hero-btn" href="#catalogo">Ver computadores</a>
+      </section>
+
+      <section class="section" id="catalogo" aria-labelledby="catalogo-title">
+        <h2 class="section-title" id="catalogo-title">Computadores destacados</h2>
+        <div class="section-line"></div>
+        <p class="empty-state" data-empty hidden>No se encontraron productos para esa busqueda.</p>
+        <div class="products-grid">
+          <% products.forEach((product, index) => { const colors = ['red','orange','green','teal','purple','red','blue','green','orange']; %>
+            <article aria-labelledby="producto-<%= product.id %>-title" class="product-card" data-product-card data-product-id="<%= product.id %>" data-search-text="<%= `${product.name} ${product.category} ${product.specs.join(' ')}`.toLowerCase() %>">
+              <div class="product-img"><img src="<%= product.image %>" alt="<%= product.imageAlt || product.name %>" loading="lazy"></div>
+              <div class="product-body">
+                <span class="badge badge-<%= colors[index] %>"><%= product.category %></span>
+                <h3 class="product-name" id="producto-<%= product.id %>-title"><%= product.name %></h3>
+                <p class="product-desc"><%= product.description %></p>
+                <div class="product-specs">
+                  <span><strong>Procesador:</strong> <%= product.specs[0] %></span>
+                  <span><strong>Graficos:</strong> <%= product.specs[1] %></span>
+                  <span><strong>Memoria:</strong> <%= product.specs[2] %></span>
+                  <span><strong>Almacenamiento:</strong> <%= product.specs[3] %></span>
+                </div>
+                <div class="product-footer">
+                  <div>
+                    <div class="price-label">Precio</div>
+                    <div class="price"><span data-money-visible aria-hidden="true"><%= new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(product.price) %></span><span class="sr-only" data-money-spoken><%= product.price.toLocaleString('es-CL') %> pesos chilenos</span></div>
+                  </div>
+                  <div class="catalog-controls">
+                    <div class="qty-ctrl-catalog" role="group" aria-label="Cantidad de <%= product.name %>">
+                      <button class="btn-qty-catalog" type="button" data-qty-decrease="<%= product.id %>" aria-disabled="true" aria-label="Menos">−</button>
+                      <output data-qty-catalog-display aria-label="Cantidad" aria-live="off">0</output>
+                      <button class="btn-qty-catalog" type="button" data-add-product="<%= product.id %>" data-qty-increase="<%= product.id %>" aria-label="Más">+</button>
+                    </div>
+                    <button class="catalog-cart-link" type="button" data-open-cart aria-label="Carrito"><%- include('partials/cart-icon') %></button>
+                  </div>
+                  <p data-qty-max-message class="catalog-quantity-note" hidden>Máximo 20 unidades</p>
+                </div>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+    </div>
+
+    <section class="section cart-view" data-cart-view aria-labelledby="carrito-title" hidden>
+      <button class="back-button" type="button" data-show-catalog>Volver al catálogo</button>
+      <h1 class="cart-title" id="carrito-title" tabindex="-1">Tu carrito</h1>
+      <div class="cart-table-wrap">
+        <table aria-label="Computadores en tu carrito">
+          <thead><tr><th scope="col">Producto</th><th scope="col">Precio unitario</th><th scope="col">Cantidad</th><th scope="col">Subtotal</th><th scope="col">Acciones</th></tr></thead>
+          <tbody data-cart-items></tbody>
+        </table>
+      </div>
+      <div class="cart-summary">
+        <div class="summary-nums">
+          <p>Subtotal: <span data-cart-subtotal>$0</span></p>
+          <p class="purchase-discount">Descuento por encuesta: <span data-cart-discount>$0</span></p>
+          <p class="total">Total a pagar: <span data-cart-total>$0</span></p>
+          <p class="purchase-note">Paga con Stripe de pruebas. Si respondes la encuesta opcional, obtienes un 5 % de descuento.</p>
+        </div>
+        <div class="cart-actions">
+          <button class="btn-clear" type="button" data-clear-cart>Vaciar carrito</button>
+          <button class="btn-checkout" type="button" data-checkout>Ir a pagar</button>
+          <button class="purchase-survey-button" type="button" data-survey-open>Obtener 5 % de descuento</button>
+        </div>
+      </div>
+      <p class="purchase-status" data-checkout-status role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+
+    <section class="home-contact" data-home-contact aria-label="Contacto">
+      <div class="section contact-layout">
+        <%- include('partials/contact-content', { headingLevel: 2 }) %>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/survey-form', { surveyQuestions }) %>
+
+  <div class="modal-overlay" data-modal>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-icon">OK</div><h2 id="modal-title">Compra simulada</h2>
+      <p>Tu pedido ha sido procesado correctamente.</p>
+      <button class="modal-close" type="button" data-close-modal>Entendido</button>
+    </div>
+  </div>
+  <div class="toast" data-toast role="status"></div>
+
+  <%- include('partials/footer') %>
+  <script type="application/json" id="products-data"><%- JSON.stringify(products).replace(/</g, '\\u003c') %></script>
+  <script src="/scripts/main.js"></script>
+  <script src="/scripts/survey.js"></script>
+  <script src="/scripts/contact.js"></script>
+</body>
+</html>

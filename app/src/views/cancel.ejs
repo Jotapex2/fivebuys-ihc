@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><%- include('partials/head', { title }) %></head>
+<body>
+  <%- include('partials/navbar', { catalogPage: false }) %>
+  <main id="contenido-principal" tabindex="-1" class="page-main container narrow" style="text-align:center">
+    <p class="eyebrow">Compra sin completar</p>
+    <h1>Pago cancelado</h1>
+    <p class="lead">Tu carrito sigue guardado. Puedes continuar cuando quieras.</p>
+    <a href="/#carrito" class="hero-btn" style="display:inline-block;margin-top:2rem">Volver al carrito</a>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/scripts/navigation.js"></script>
+</body>
+</html>

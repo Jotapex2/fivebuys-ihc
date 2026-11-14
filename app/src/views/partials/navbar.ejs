@@ -1,0 +1,29 @@
+<a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
+<header class="site-header">
+  <nav class="navbar" aria-label="Navegación principal">
+    <a class="logo" href="/">Five<span>Buys</span></a>
+    <% if (typeof catalogPage !== 'undefined' && catalogPage) { %>
+      <label class="search-wrap">
+        <span class="sr-only">Buscar computadores</span>
+        <input type="search" placeholder="Buscar computadores gamer, Intel, Ryzen..." data-search>
+        <span aria-hidden="true">&#128269;</span>
+      </label>
+    <% } else { %>
+      <div class="nav-links">
+        <a href="/">Inicio</a><a href="/acercade">Nosotros</a><a href="/contacto">Contacto</a>
+      </div>
+    <% } %>
+    <div class="nav-actions">
+      <% if (typeof catalogPage !== 'undefined' && catalogPage) { %>
+        <a class="nav-page-link" href="/acercade">Nosotros</a>
+        <a class="nav-page-link" href="/contacto">Contacto</a>
+      <% } %>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu">Menú</button>
+      <button class="cart-btn" type="button" data-open-cart aria-label="Carrito">
+        <%- include('cart-icon') %><span class="cart-count" data-cart-count aria-hidden="true">0</span>
+        <span class="cart-total-preview sr-only" aria-hidden="true" data-cart-total-preview>Total: $0</span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu"><a href="/">Inicio</a><a href="/acercade">Nosotros</a><a href="/contacto">Contacto</a></div>
+  </nav>
+</header>

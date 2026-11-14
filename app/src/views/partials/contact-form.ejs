@@ -1,0 +1,23 @@
+<section class="form-card">
+  <h2>Envíanos un mensaje</h2>
+  <form data-contact-form novalidate>
+    <label for="contact-name">Nombre completo</label>
+    <input id="contact-name" name="name" required minlength="3" autocomplete="name" aria-describedby="contact-name-error">
+    <p id="contact-name-error" class="field-error" data-field-error="name" hidden></p>
+    <label for="contact-email">Correo electrónico</label>
+    <input id="contact-email" name="email" type="email" inputmode="email" required autocomplete="email" aria-describedby="contact-email-error">
+    <p id="contact-email-error" class="field-error" data-field-error="email" hidden></p>
+    <label for="contact-subject">Asunto</label>
+    <select id="contact-subject" name="subject" required aria-describedby="contact-subject-error">
+      <option value="">Selecciona una opción</option>
+      <option>Consulta general</option><option>Soporte de compra</option><option>Despacho</option><option>Devoluciones</option><option>Otro</option>
+    </select>
+    <p id="contact-subject-error" class="field-error" data-field-error="subject" hidden></p>
+    <label for="contact-message">Mensaje</label>
+    <textarea id="contact-message" name="message" rows="4" required aria-describedby="contact-message-error"></textarea>
+    <p id="contact-message-error" class="field-error" data-field-error="message" hidden></p>
+    <button class="primary-button" type="submit">Enviar mensaje</button>
+    <p class="form-response" data-form-response role="status" aria-atomic="true"></p>
+    <button class="contact-new" type="button" data-contact-new hidden>Escribir otro mensaje</button>
+  </form>
+</section>

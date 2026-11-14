@@ -1,0 +1,52 @@
+<dialog class="purchase-survey" data-survey-dialog aria-labelledby="survey-title" aria-describedby="survey-intro">
+  <button class="survey-dismiss" type="button" data-survey-dismiss aria-label="Cerrar"><span aria-hidden="true">×</span></button>
+  <div class="survey-heading" data-survey-heading>
+    <span class="survey-benefit">5 % para tu compra</span>
+    <h2 id="survey-title" tabindex="-1">Tu opinión</h2>
+    <p id="survey-intro">Selecciona de 1 a 5 estrellas: 1 es muy mala y 5 es muy buena.</p>
+  </div>
+  <form data-survey-form novalidate>
+    <div class="survey-questions">
+    <% surveyQuestions.forEach((question, index) => { %>
+      <fieldset class="purchase-question" style="--row-index:<%= index %>">
+        <legend><%= question %></legend>
+        <div class="purchase-stars">
+          <% for (let value = 1; value <= 5; value++) { %>
+            <label data-star-value="<%= value %>" data-filled="false">
+              <input type="radio" name="rating-<%= index %>" value="<%= value %>" required aria-label="<%= value %> de 5 estrellas" aria-describedby="rating-error-<%= index %>">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2.8 2.84 5.75 6.34.92-4.59 4.47 1.08 6.31L12 17.27l-5.67 2.98 1.08-6.31-4.59-4.47 6.34-.92Z"/></svg>
+            </label>
+          <% } %>
+        </div>
+        <p class="purchase-error" id="rating-error-<%= index %>" data-rating-error hidden>Selecciona una calificación.</p>
+      </fieldset>
+    <% }) %>
+    </div>
+    <label class="purchase-comments" for="survey-comments">Comentarios adicionales</label>
+    <textarea id="survey-comments" name="comments" rows="2" maxlength="200" placeholder="Opcional · hasta 200 caracteres" aria-describedby="survey-comments-hint"></textarea>
+    <span class="sr-only" id="survey-comments-hint">Campo opcional, máximo 200 caracteres. No incluyas datos personales ni de tarjetas.</span>
+    <div class="purchase-survey-actions survey-form-actions">
+      <button type="submit" class="purchase-survey-button">Enviar y obtener 5 %</button>
+      <div class="survey-secondary-actions">
+        <button type="button" data-survey-back>Volver al carrito</button>
+        <button type="button" data-survey-skip>Continuar sin descuento</button>
+      </div>
+    </div>
+  </form>
+  <div data-survey-confirm hidden>
+    <h3 id="survey-confirm-title" tabindex="-1" class="success-title" data-survey-confirm-title><span aria-hidden="true">✓</span> Encuesta registrada</h3>
+    <dl class="purchase-totals">
+      <dt>Subtotal</dt><dd data-survey-subtotal></dd>
+      <dt>Descuento (5 %)</dt><dd data-survey-discount></dd>
+      <dt>Total a pagar</dt><dd data-survey-total></dd>
+    </dl>
+    <p data-survey-countdown role="timer" aria-live="off" aria-atomic="true" hidden>Stripe se abrirá en <strong data-survey-seconds>10</strong> <span data-survey-seconds-unit>segundos</span>.</p>
+    <div class="purchase-survey-actions survey-confirm-actions">
+      <button type="button" class="purchase-survey-button" data-survey-now hidden>Continuar</button>
+      <button type="button" class="purchase-survey-button" data-survey-retry hidden>Reintentar</button>
+      <button type="button" data-survey-pause hidden>Pausar</button>
+      <button type="button" class="quiet-button" data-survey-stop>Volver</button>
+    </div>
+  </div>
+  <p class="purchase-status" data-survey-status role="status" aria-live="polite" aria-atomic="true"></p>
+</dialog>
